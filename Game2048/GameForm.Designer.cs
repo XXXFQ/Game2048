@@ -29,6 +29,7 @@ namespace Game2048
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
             this.GameBoard = new System.Windows.Forms.GroupBox();
             this.TileBase = new System.Windows.Forms.Panel();
             this.TileDataBase = new System.Windows.Forms.Label();
@@ -223,6 +224,7 @@ namespace Game2048
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.GameBoard);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "GameForm";
             this.Text = "2048 Game";
