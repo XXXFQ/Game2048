@@ -44,10 +44,14 @@ namespace Game2048
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.MenuHelpEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuVersion = new System.Windows.Forms.ToolStripMenuItem();
+            this.BestScoreBox = new System.Windows.Forms.GroupBox();
+            this.BestScoreLabel = new System.Windows.Forms.Label();
+            this.ReturnButton = new System.Windows.Forms.Button();
             this.GameBoard.SuspendLayout();
             this.TileBase.SuspendLayout();
             this.ScoreBox.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.BestScoreBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // GameBoard
@@ -55,12 +59,11 @@ namespace Game2048
             this.GameBoard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(173)))), ((int)(((byte)(160)))));
             this.GameBoard.Controls.Add(this.TileBase);
             this.GameBoard.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.GameBoard.Location = new System.Drawing.Point(185, 61);
+            this.GameBoard.Location = new System.Drawing.Point(21, 104);
             this.GameBoard.Name = "GameBoard";
             this.GameBoard.Size = new System.Drawing.Size(429, 445);
             this.GameBoard.TabIndex = 0;
             this.GameBoard.TabStop = false;
-            this.GameBoard.Text = "Play 2048 Game";
             // 
             // TileBase
             // 
@@ -88,7 +91,7 @@ namespace Game2048
             this.StartButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(122)))), ((int)(((byte)(104)))));
             this.StartButton.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.StartButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.StartButton.Location = new System.Drawing.Point(722, 426);
+            this.StartButton.Location = new System.Drawing.Point(635, 483);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(105, 56);
             this.StartButton.TabIndex = 1;
@@ -101,7 +104,7 @@ namespace Game2048
             this.MoveUpButton.BackColor = System.Drawing.Color.BurlyWood;
             this.MoveUpButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.MoveUpButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MoveUpButton.Location = new System.Drawing.Point(704, 216);
+            this.MoveUpButton.Location = new System.Drawing.Point(578, 242);
             this.MoveUpButton.Name = "MoveUpButton";
             this.MoveUpButton.Size = new System.Drawing.Size(65, 59);
             this.MoveUpButton.TabIndex = 2;
@@ -114,7 +117,7 @@ namespace Game2048
             this.MoveLeftButton.BackColor = System.Drawing.Color.BurlyWood;
             this.MoveLeftButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.MoveLeftButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MoveLeftButton.Location = new System.Drawing.Point(633, 270);
+            this.MoveLeftButton.Location = new System.Drawing.Point(507, 296);
             this.MoveLeftButton.Name = "MoveLeftButton";
             this.MoveLeftButton.Size = new System.Drawing.Size(65, 59);
             this.MoveLeftButton.TabIndex = 3;
@@ -127,7 +130,7 @@ namespace Game2048
             this.MoveRightButton.BackColor = System.Drawing.Color.BurlyWood;
             this.MoveRightButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.MoveRightButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MoveRightButton.Location = new System.Drawing.Point(775, 270);
+            this.MoveRightButton.Location = new System.Drawing.Point(649, 296);
             this.MoveRightButton.Name = "MoveRightButton";
             this.MoveRightButton.Size = new System.Drawing.Size(65, 59);
             this.MoveRightButton.TabIndex = 4;
@@ -140,7 +143,7 @@ namespace Game2048
             this.MoveDownButton.BackColor = System.Drawing.Color.BurlyWood;
             this.MoveDownButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.MoveDownButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MoveDownButton.Location = new System.Drawing.Point(704, 325);
+            this.MoveDownButton.Location = new System.Drawing.Point(578, 351);
             this.MoveDownButton.Name = "MoveDownButton";
             this.MoveDownButton.Size = new System.Drawing.Size(65, 59);
             this.MoveDownButton.TabIndex = 5;
@@ -163,7 +166,7 @@ namespace Game2048
             // 
             this.ScoreBox.Controls.Add(this.ScoreLabel);
             this.ScoreBox.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ScoreBox.Location = new System.Drawing.Point(658, 37);
+            this.ScoreBox.Location = new System.Drawing.Point(475, 55);
             this.ScoreBox.Name = "ScoreBox";
             this.ScoreBox.Size = new System.Drawing.Size(143, 79);
             this.ScoreBox.TabIndex = 8;
@@ -186,7 +189,7 @@ namespace Game2048
             this.MenuHelpEdit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(856, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(787, 24);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -209,12 +212,48 @@ namespace Game2048
             this.MenuVersion.Text = "バージョン情報(&A)...";
             this.MenuVersion.Click += new System.EventHandler(this.MenuVersion_Click);
             // 
+            // BestScoreBox
+            // 
+            this.BestScoreBox.Controls.Add(this.BestScoreLabel);
+            this.BestScoreBox.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BestScoreBox.Location = new System.Drawing.Point(624, 55);
+            this.BestScoreBox.Name = "BestScoreBox";
+            this.BestScoreBox.Size = new System.Drawing.Size(143, 79);
+            this.BestScoreBox.TabIndex = 10;
+            this.BestScoreBox.TabStop = false;
+            this.BestScoreBox.Text = "BEST";
+            // 
+            // BestScoreLabel
+            // 
+            this.BestScoreLabel.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BestScoreLabel.Location = new System.Drawing.Point(6, 33);
+            this.BestScoreLabel.Name = "BestScoreLabel";
+            this.BestScoreLabel.Size = new System.Drawing.Size(131, 36);
+            this.BestScoreLabel.TabIndex = 9;
+            this.BestScoreLabel.Text = "0";
+            this.BestScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ReturnButton
+            // 
+            this.ReturnButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(122)))), ((int)(((byte)(104)))));
+            this.ReturnButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.ReturnButton.ForeColor = System.Drawing.SystemColors.Info;
+            this.ReturnButton.Location = new System.Drawing.Point(532, 483);
+            this.ReturnButton.Name = "ReturnButton";
+            this.ReturnButton.Size = new System.Drawing.Size(62, 56);
+            this.ReturnButton.TabIndex = 11;
+            this.ReturnButton.Text = "↻";
+            this.ReturnButton.UseVisualStyleBackColor = false;
+            this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(856, 518);
+            this.ClientSize = new System.Drawing.Size(787, 563);
+            this.Controls.Add(this.ReturnButton);
+            this.Controls.Add(this.BestScoreBox);
             this.Controls.Add(this.ScoreBox);
             this.Controls.Add(this.Logo2048);
             this.Controls.Add(this.MoveDownButton);
@@ -234,6 +273,7 @@ namespace Game2048
             this.ScoreBox.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.BestScoreBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,6 +295,9 @@ namespace Game2048
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem MenuHelpEdit;
         private System.Windows.Forms.ToolStripMenuItem MenuVersion;
+        private System.Windows.Forms.GroupBox BestScoreBox;
+        private System.Windows.Forms.Label BestScoreLabel;
+        private System.Windows.Forms.Button ReturnButton;
     }
 }
 

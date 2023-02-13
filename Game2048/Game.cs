@@ -21,10 +21,28 @@ namespace Game2048
         // ゲームクリアを確認したかどうか
         private bool checkedGameClear = false;
 
+        // ベストスコア
+        private int bestScore = 0;
+
+        public int BestScore
+        {
+            get {
+                if (this.Board.Score > this.bestScore) {
+                    this.bestScore = this.Board.Score;
+                }
+                return this.bestScore;
+            }
+        }
+
         public Game()
         {
             // ボードの情報を生成
             this.board = new GameBoard(ROW_SIZE, COLUMN_SIZE);
+        }
+
+        public Game(int bestScore) : this()
+        {
+            this.bestScore = bestScore;
         }
 
         /// <summary>

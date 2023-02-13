@@ -12,9 +12,18 @@ namespace Game2048
 {
     public partial class GameForm : Form
     {
+        // ツール情報
+        const string GAME_NAME = "2048 Game";
+        const string VERSION = "v1.1";
+        const string AUTHOR = "アーム";
+        const string TWITTER_ID = "@40414";
+
         private Game game = null;
         private Panel[] tile = null;
         private Label[] tileLabel = null;
+
+        // ベストスコア
+        private int bestScore = 0;
 
         public GameForm()
         {
@@ -29,6 +38,9 @@ namespace Game2048
             // 移動ボタン無効化
             MoveUpButton.Enabled = MoveLeftButton.Enabled =
                 MoveRightButton.Enabled = MoveDownButton.Enabled = false;
+
+            // 戻るボタン無効化
+            ReturnButton.Enabled = false;
         }
 
         /// <summary>
@@ -37,7 +49,7 @@ namespace Game2048
         private void MenuVersion_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
-                "2048 Game V1.0\n\n © 2023 アーム<Twitter:@40414>",
+                GAME_NAME + " " + VERSION + "\n\n© 2023 " + AUTHOR + "<Twitter:" + TWITTER_ID + ">",
                 "バージョン情報",
                 MessageBoxButtons.OK);
         }
@@ -195,6 +207,8 @@ namespace Game2048
 
             // スコア表の更新
             this.ScoreLabel.Text = Convert.ToString(this.game.Board.Score);
+            this.BestScoreLabel.Text = Convert.ToString(this.game.BestScore);
+            this.bestScore = this.game.BestScore;
         }
 
         /// <summary>
@@ -204,6 +218,7 @@ namespace Game2048
         {
             // ゲームオーバーになったか調べる
             if (this.game.IsGameOver) {
+                ReturnButton.Enabled = false;
                 GotGameOver();
                 return;
             }
@@ -212,6 +227,9 @@ namespace Game2048
             if (this.game.IsGameClear) {
                 GotGameClear();
             }
+
+            // 戻るボタン有効化
+            ReturnButton.Enabled = true;
         }
 
         /// <summary>
@@ -257,7 +275,7 @@ namespace Game2048
             }
 
             // Gameクラスのインスタンス生成
-            this.game = new Game();
+            this.game = new Game(this.bestScore);
 
             // ゲームを開始する
             this.game.Start();
@@ -265,6 +283,9 @@ namespace Game2048
             // 移動ボタン有効化
             MoveUpButton.Enabled = MoveLeftButton.Enabled =
             MoveRightButton.Enabled = MoveDownButton.Enabled = true;
+
+            // 戻るボタン無効化
+            ReturnButton.Enabled = false;
 
             // タイルを生成する
             if (this.tile == null) {
@@ -282,8 +303,8 @@ namespace Game2048
         {
             if (this.game.Board.MoveTilesUp()) {
                 this.UpdateTileToForm();
+                CheckResult();
             }
-            CheckResult();
         }
 
         /// <summary>
@@ -293,8 +314,8 @@ namespace Game2048
         {
             if (this.game.Board.MoveTilesLeft()) {
                 this.UpdateTileToForm();
+                CheckResult();
             }
-            CheckResult();
         }
 
         /// <summary>
@@ -304,8 +325,8 @@ namespace Game2048
         {
             if (this.game.Board.MoveTilesRight()) {
                 this.UpdateTileToForm();
+                CheckResult();
             }
-            CheckResult();
         }
 
         /// <summary>
@@ -315,8 +336,20 @@ namespace Game2048
         {
             if (this.game.Board.MoveTilesDown()) {
                 this.UpdateTileToForm();
+                CheckResult();
             }
-            CheckResult();
+        }
+
+        /// <summary>
+        /// 戻るボタンを押したときの処理
+        /// </summary>
+        private void ReturnButton_Click(object sender, EventArgs e)
+        {
+            this.game.Board.RestoreTiles();
+            this.UpdateTileToForm();
+
+            // 戻るボタン無効化
+            ReturnButton.Enabled = false;
         }
     }
 }
