@@ -208,7 +208,7 @@ namespace Game2048
             this.MenuVersion.Name = "MenuVersion";
             this.MenuVersion.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.MenuVersion.ShowShortcutKeys = false;
-            this.MenuVersion.Size = new System.Drawing.Size(180, 22);
+            this.MenuVersion.Size = new System.Drawing.Size(160, 22);
             this.MenuVersion.Text = "バージョン情報(&A)...";
             this.MenuVersion.Click += new System.EventHandler(this.MenuVersion_Click);
             // 

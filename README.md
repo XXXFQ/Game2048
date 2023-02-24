@@ -1,4 +1,4 @@
 # Game2048
 数字をつなげて、2048のタイルを完成させよう！
 
-![](./img/app1.png)
+![](./Docs/Screenshots/0-Home.png)
