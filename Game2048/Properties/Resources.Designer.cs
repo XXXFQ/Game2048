@@ -4,66 +4,149 @@
 //     ランタイム バージョン:4.0.30319.42000
 //
 //     このファイルへの変更は、以下の状況下で不正な動作の原因になったり、
-//     コードが再生成されるときに損失したりします
+//     コードが再生成されるときに損失したりします。
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-namespace Game2048.Properties
-{
+namespace Game2048.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   ローカライズされた文字列などを検索するための、厳密に型指定されたリソース クラスです。
     /// </summary>
     // このクラスは StronglyTypedResourceBuilder クラスが ResGen
     // または Visual Studio のようなツールを使用して自動生成されました。
     // メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
-    // ResGen を実行し直すか、または VS プロジェクトをリビルドします。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    // ResGen を実行し直すか、または VS プロジェクトをビルドし直します。
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
-        ///   このクラスで使用されるキャッシュされた ResourceManager インスタンスを返します。
+        ///   このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Game2048.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   すべてについて、現在のスレッドの CurrentUICulture プロパティをオーバーライドします
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   注意 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Attention {
+            get {
+                return ResourceManager.GetString("Attention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   おめでとうございます! に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Congratulations {
+            get {
+                return ResourceManager.GetString("Congratulations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   エラー に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   行と列の数は最低でも2つ必要です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Error_RowAndColumnMinimumRequirement {
+            get {
+                return ResourceManager.GetString("Error_RowAndColumnMinimumRequirement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   2048タイルが完成しました!\n引き続き遊ぶことが出来ます。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Message_Completed {
+            get {
+                return ResourceManager.GetString("Message_Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Gameクラスのインスタンスが生成されていません。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Message_GameInstance {
+            get {
+                return ResourceManager.GetString("Message_GameInstance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   GameOverになりました。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Message_GameOver {
+            get {
+                return ResourceManager.GetString("Message_GameOver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   始めからやり直しますか? に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Message_StartOver {
+            get {
+                return ResourceManager.GetString("Message_StartOver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   残念! に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TooBad {
+            get {
+                return ResourceManager.GetString("TooBad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   バージョン情報 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string VersionInfo {
+            get {
+                return ResourceManager.GetString("VersionInfo", resourceCulture);
             }
         }
     }
