@@ -1,7 +1,7 @@
 ﻿
-namespace Game2048
+namespace Game2048.Forms
 {
-    partial class GameForm
+    partial class FormMain
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -29,7 +29,7 @@ namespace Game2048
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.GameBoard = new System.Windows.Forms.GroupBox();
             this.TileBase = new System.Windows.Forms.Panel();
             this.TileDataBase = new System.Windows.Forms.Label();
@@ -88,6 +88,7 @@ namespace Game2048
             // 
             // StartButton
             // 
+            this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.StartButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(122)))), ((int)(((byte)(104)))));
             this.StartButton.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.StartButton.ForeColor = System.Drawing.SystemColors.Info;
@@ -101,6 +102,7 @@ namespace Game2048
             // 
             // MoveUpButton
             // 
+            this.MoveUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.MoveUpButton.BackColor = System.Drawing.Color.BurlyWood;
             this.MoveUpButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.MoveUpButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -114,6 +116,7 @@ namespace Game2048
             // 
             // MoveLeftButton
             // 
+            this.MoveLeftButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.MoveLeftButton.BackColor = System.Drawing.Color.BurlyWood;
             this.MoveLeftButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.MoveLeftButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -127,6 +130,7 @@ namespace Game2048
             // 
             // MoveRightButton
             // 
+            this.MoveRightButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.MoveRightButton.BackColor = System.Drawing.Color.BurlyWood;
             this.MoveRightButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.MoveRightButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -140,6 +144,7 @@ namespace Game2048
             // 
             // MoveDownButton
             // 
+            this.MoveDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.MoveDownButton.BackColor = System.Drawing.Color.BurlyWood;
             this.MoveDownButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.MoveDownButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -164,6 +169,7 @@ namespace Game2048
             // 
             // ScoreBox
             // 
+            this.ScoreBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ScoreBox.Controls.Add(this.ScoreLabel);
             this.ScoreBox.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ScoreBox.Location = new System.Drawing.Point(475, 55);
@@ -214,6 +220,7 @@ namespace Game2048
             // 
             // BestScoreBox
             // 
+            this.BestScoreBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BestScoreBox.Controls.Add(this.BestScoreLabel);
             this.BestScoreBox.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.BestScoreBox.Location = new System.Drawing.Point(624, 55);
@@ -235,6 +242,7 @@ namespace Game2048
             // 
             // ReturnButton
             // 
+            this.ReturnButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ReturnButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(122)))), ((int)(((byte)(104)))));
             this.ReturnButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ReturnButton.ForeColor = System.Drawing.SystemColors.Info;
@@ -246,7 +254,7 @@ namespace Game2048
             this.ReturnButton.UseVisualStyleBackColor = false;
             this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
             // 
-            // GameForm
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -263,9 +271,12 @@ namespace Game2048
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.GameBoard);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "GameForm";
+            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(803, 602);
+            this.Name = "FormMain";
             this.Text = "2048 Game";
             this.Load += new System.EventHandler(this.GameForm_Load);
             this.GameBoard.ResumeLayout(false);

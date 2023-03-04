@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Game2048
+using Game2048.Game;
+using Game2048.Properties;
+
+namespace Game2048.Forms
 {
-    public partial class GameForm : Form
+    public partial class FormMain : Form
     {
         // ツール情報
         const string GAME_NAME = "2048 Game";
@@ -18,14 +15,14 @@ namespace Game2048
         const string AUTHOR = "アーム";
         const string TWITTER_ID = "@40414";
 
-        private Game game = null;
+        private GameMain game = null;
         private Panel[] tile = null;
         private Label[] tileLabel = null;
 
         // ベストスコア
         private int bestScore = 0;
 
-        public GameForm()
+        public FormMain()
         {
             InitializeComponent();
         }
@@ -49,8 +46,8 @@ namespace Game2048
         private void MenuVersion_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
-                GAME_NAME + " " + VERSION + "\n\n© 2023 " + AUTHOR + "<Twitter:" + TWITTER_ID + ">",
-                "バージョン情報",
+                $"{GAME_NAME} {VERSION}\n\n© 2023 {AUTHOR}<Twitter:{TWITTER_ID}>",
+                Resources.VersionInfo,
                 MessageBoxButtons.OK);
         }
 
@@ -66,9 +63,10 @@ namespace Game2048
         public void NoGameInstanceErrorMsg()
         {
             MessageBox.Show(
-                    "Gameクラスのインスタンスが生成されていません。", "エラー",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                Resources.Message_GameInstance,
+                Resources.Error,
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
 
         /// <summary>
@@ -187,13 +185,13 @@ namespace Game2048
 
                 // パネルの配置位置設定
                 this.tile[index].Visible = false;
-                this.tile[index].Name = "Tile" + Convert.ToString(posX + "_" + posY);
+                this.tile[index].Name = $"Tile{Convert.ToString($"{posX}_{posY}")}";
                 this.tile[index].Location = new Point(
                     (posX + 1) * 6 + posX * 100,
                     (posY + 1) * 20 + posY * 86);
 
                 // 値を格納するラベルの設定
-                this.tileLabel[index].Name = "TileData" + Convert.ToString(posX + "_" + posY);
+                this.tileLabel[index].Name = $"TileData{Convert.ToString($"{posX}_{posY}")}";
                 this.tileLabel[index].Text = Convert.ToString(game.Board.Tiles[index].Data);
 
                 // タイルデザインの調整
@@ -241,7 +239,7 @@ namespace Game2048
             MoveUpButton.Enabled = MoveLeftButton.Enabled =
             MoveRightButton.Enabled = MoveDownButton.Enabled = false;
             
-            MessageBox.Show("GameOverになりました。", "残念!",MessageBoxButtons.OK);
+            MessageBox.Show(Resources.Message_GameOver, Resources.TooBad, MessageBoxButtons.OK);
         }
 
         /// <summary>
@@ -250,9 +248,7 @@ namespace Game2048
         private void GotGameClear()
         {
             if (!this.game.CheckedGameClear) {
-                MessageBox.Show("2048タイルが完成しました!\n引き続き遊ぶことが出来ます。",
-                    "おめでとうございます!",
-                    MessageBoxButtons.OK);
+                MessageBox.Show(Resources.Message_Completed, Resources.Congratulations, MessageBoxButtons.OK);
                 this.game.CheckedGameClear = true;
             }
         }
@@ -266,16 +262,16 @@ namespace Game2048
             if (this.game != null) {
                 if (!this.game.IsGameOver) {
                     DialogResult result = MessageBox.Show(
-                        "始めからやり直しますか?", "注意",
+                        Resources.Message_StartOver, Resources.Attention,
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Exclamation,
                         MessageBoxDefaultButton.Button2);
-                    if (result == DialogResult.No) { return; }
+                    if (result == DialogResult.No) return;
                 }
             }
 
             // Gameクラスのインスタンス生成
-            this.game = new Game(this.bestScore);
+            this.game = new GameMain(this.bestScore);
 
             // ゲームを開始する
             this.game.Start();

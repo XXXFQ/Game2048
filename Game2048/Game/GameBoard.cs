@@ -1,89 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Game2048
+using Game2048.Properties;
+
+namespace Game2048.Game
 {
     class GameBoard
     {
-        // タイル情報を格納する配列
-        private Tile[] tiles;
-
         // 過去のタイル情報を格納する配列
-        private Tile[] pastTilesInfo;
-
-        // 行、列の大きさ
-        private int rowSize;
-        private int columnSize;
-
-        // ボード全体のサイズ
-        private int boardSize;
-
-        // スコア
-        private int score = 0;
-
-        // スコアへ加算する増分値
-        private int scoreIncreaseValue = 0;
+        private readonly Tile[] pastTilesInfo;
 
         public GameBoard(int rowSize, int columnSize)
         {
             // マスが2x2以上では無い場合、エラーを返す
-            if (rowSize < 2 || columnSize < 2)
-                throw new ArgumentOutOfRangeException("行と列の数は最低でも2つ必要です。");
+            if (rowSize < 2 || columnSize < 2) {
+                throw new ArgumentOutOfRangeException(Resources.Error_RowAndColumnMinimumRequirement);
+            }
 
-            this.rowSize = rowSize;
-            this.columnSize = columnSize;
-            this.boardSize = this.rowSize * this.columnSize;
+            this.RowSize = rowSize;
+            this.ColumnSize = columnSize;
+            this.Score = this.ScoreIncreaseValue = 0;
 
             // boardSizeに対応して、タイルの情報を格納する配列を生成
-            this.tiles = new Tile[this.boardSize];
-            this.pastTilesInfo = new Tile[this.boardSize];
+            this.Tiles = new Tile[this.BoardSize];
+            this.pastTilesInfo = new Tile[this.BoardSize];
 
-            for (int index = 0; index < this.boardSize; index++)
+            for (int index = 0; index < this.BoardSize; index++)
             {
                 // タイルの座標情報を取得
                 int[] coordinates = this.ConvertToCoordinates(index);
 
                 // 座標情報を基にタイルのインスタンスを生成
-                this.tiles[index] = new Tile(coordinates[0], coordinates[1]);
+                this.Tiles[index] = new Tile(coordinates[0], coordinates[1]);
                 this.pastTilesInfo[index] = new Tile(coordinates[0], coordinates[1]);
             }
         }
 
         /// <summary>
-        /// タイルの情報を取得
+        /// タイル情報を格納する配列
         /// </summary>
         /// <returns>タイルの情報</returns>
-        public Tile[] Tiles
-        {
-            get {
-                return this.tiles;
-            }
-        }
+        public Tile[] Tiles { get; }
 
         /// <summary>
-        /// 行の長さを取得
+        /// 行の長さを設定、取得
         /// </summary>
         /// <returns>行の長さ</returns>
-        public int RowSize
-        {
-            get {
-                return this.rowSize;
-            }
-        }
+        public int RowSize { get; }
 
         /// <summary>
-        /// 列の長さを取得
+        /// 列の長さを設定、取得
         /// </summary>
         /// <returns>列の長さ</returns>
-        public int ColumnSize
-        {
-            get {
-                return this.columnSize;
-            }
-        }
+        public int ColumnSize { get; }
 
         /// <summary>
         /// 全てのマスの数(ボードの大きさ)を取得
@@ -92,7 +60,7 @@ namespace Game2048
         public int BoardSize
         {
             get {
-                return this.boardSize;
+                return this.RowSize * this.ColumnSize;
             }
         }
 
@@ -100,23 +68,13 @@ namespace Game2048
         /// スコアを取得する
         /// </summary>
         /// <returns>スコア</returns>
-        public int Score
-        {
-            get {
-                return this.score;
-            }
-        }
+        public int Score { get; private set; }
 
         /// <summary>
         /// スコアへ加算する増分値を取得する
         /// </summary>
         /// <returns>増分値</returns>
-        public int ScoreIncreaseValue
-        {
-            get {
-                return this.scoreIncreaseValue;
-            }
-        }
+        public int ScoreIncreaseValue { get; private set; }
 
         /// <summary>
         /// インデックスを座標系に変換
@@ -126,8 +84,8 @@ namespace Game2048
         public int[] ConvertToCoordinates(int pos)
         {
             int[] posIndex = new int[2];
-            posIndex[0] = pos / this.rowSize;
-            posIndex[1] = pos % this.columnSize;
+            posIndex[0] = pos / this.RowSize;
+            posIndex[1] = pos % this.ColumnSize;
             return posIndex;
         }
 
@@ -139,7 +97,7 @@ namespace Game2048
         /// <returns>変換したインデックス</returns>
         public int ConvertToTileIndex(int row, int column)
         {
-            return row * this.rowSize + column;
+            return row * this.RowSize + column;
         }
 
         /// <summary>
@@ -221,8 +179,8 @@ namespace Game2048
                 Tiles[nextPos].EditLock = true;
 
                 // スコアの更新
-                this.score += Tiles[nextPos].Data;
-                this.scoreIncreaseValue += Tiles[nextPos].Data;
+                this.Score += Tiles[nextPos].Data;
+                this.ScoreIncreaseValue += Tiles[nextPos].Data;
             } else {
                 // それ以外の場合、値の移動を行う
                 Tiles[nextPos].Data = Tiles[currentPos].Data;
@@ -435,7 +393,7 @@ namespace Game2048
             if (!CanMoveTilesUp) { return false; }
 
             bool movedTile = false;
-            this.scoreIncreaseValue = 0;
+            this.ScoreIncreaseValue = 0;
             BackupOperationHistory();
 
             for (int currentPos = RowSize; currentPos < BoardSize; currentPos++)
@@ -465,7 +423,7 @@ namespace Game2048
             if (!CanMoveTilesLeft) { return false; }
 
             bool movedTile = false;
-            this.scoreIncreaseValue = 0;
+            this.ScoreIncreaseValue = 0;
             BackupOperationHistory();
 
             for (int currentPos = 1; currentPos < BoardSize; currentPos++)
@@ -496,7 +454,7 @@ namespace Game2048
 
             bool movedTile = false;
             int columnIndexMax = this.ColumnSize - 1;
-            this.scoreIncreaseValue = 0;
+            this.ScoreIncreaseValue = 0;
             BackupOperationHistory();
 
             for (int currentPos = BoardSize - 2; currentPos >= 0; currentPos--)
@@ -530,7 +488,7 @@ namespace Game2048
 
             bool movedTile = false;
             int rowIndexMax = this.RowSize - 1;
-            this.scoreIncreaseValue = 0;
+            this.ScoreIncreaseValue = 0;
             BackupOperationHistory();
 
             for (int currentPos = BoardSize - this.ColumnSize - 1; currentPos >= 0; currentPos--)
@@ -560,10 +518,10 @@ namespace Game2048
         public void RestoreTiles()
         {
             for (int i = 0; i < this.pastTilesInfo.Length; i++) {
-                this.tiles[i].Data = this.pastTilesInfo[i].Data;
-                this.tiles[i].IsExist = this.pastTilesInfo[i].IsExist;
+                this.Tiles[i].Data = this.pastTilesInfo[i].Data;
+                this.Tiles[i].IsExist = this.pastTilesInfo[i].IsExist;
             }
-            this.score -= this.ScoreIncreaseValue;
+            this.Score -= this.ScoreIncreaseValue;
         }
 
         /// <summary>

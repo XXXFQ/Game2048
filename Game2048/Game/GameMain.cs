@@ -1,25 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Game2048
+﻿namespace Game2048.Game
 {
-    class Game
+    class GameMain
     {
         // 行、列の大きさ
-        private int ROW_SIZE = 4;
-        private int COLUMN_SIZE = 4;
+        private const int ROW_SIZE = 4;
+        private const int COLUMN_SIZE = 4;
 
         // 初期配置するタイルの枚数
         private const int INITIAL_PANEL_NUM = 2;
-
-        // ボードの情報
-        private GameBoard board;
-
-        // ゲームクリアを確認したかどうか
-        private bool checkedGameClear = false;
 
         // ベストスコア
         private int bestScore = 0;
@@ -34,13 +22,13 @@ namespace Game2048
             }
         }
 
-        public Game()
+        public GameMain()
         {
             // ボードの情報を生成
-            this.board = new GameBoard(ROW_SIZE, COLUMN_SIZE);
+            this.Board = new GameBoard(ROW_SIZE, COLUMN_SIZE);
         }
 
-        public Game(int bestScore) : this()
+        public GameMain(int bestScore) : this()
         {
             this.bestScore = bestScore;
         }
@@ -49,19 +37,14 @@ namespace Game2048
         /// ボードの情報を取得
         /// </summary>
         /// <returns>ボードの情報</returns>
-        public GameBoard Board
-        {
-            get {
-                return this.board;
-            }
-        }
+        public GameBoard Board { get; }
 
         /// <summary>
         /// ゲームをスタートする時の動作
         /// </summary>
         public void Start()
         {
-            this.board.CreateNewTile(INITIAL_PANEL_NUM);
+            this.Board.CreateNewTile(INITIAL_PANEL_NUM);
         }
 
         /// <summary>
@@ -77,6 +60,12 @@ namespace Game2048
         }
 
         /// <summary>
+        /// ゲームクリアを確認したかどうか
+        /// </summary>
+        /// <returns>確認した場合trueを返す。そうでない場合はfalseを返す。</returns>
+        public bool CheckedGameClear { get; set; }
+
+        /// <summary>
         /// ゲームクリアしたかどうか
         /// </summary>
         /// <returns>ゲームクリアしている場合trueを返す。そうでない場合はfalseを返す。</returns>
@@ -89,20 +78,6 @@ namespace Game2048
                     }
                 }
                 return false;
-            }
-        }
-
-        /// <summary>
-        /// ゲームクリアを確認したかどうか
-        /// </summary>
-        /// <returns>確認した場合trueを返す。そうでない場合はfalseを返す。</returns>
-        public bool CheckedGameClear
-        {
-            set {
-                this.checkedGameClear = value;
-            }
-            get {
-                return this.checkedGameClear;
             }
         }
     }
