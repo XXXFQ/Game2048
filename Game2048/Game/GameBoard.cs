@@ -57,12 +57,7 @@ namespace Game2048.Game
         /// 全てのマスの数(ボードの大きさ)を取得
         /// </summary>
         /// <returns>全てのマスの数(ボードの大きさ)</returns>
-        public int BoardSize
-        {
-            get {
-                return this.RowSize * this.ColumnSize;
-            }
-        }
+        public int BoardSize => this.RowSize * this.ColumnSize;
 
         /// <summary>
         /// スコアを取得する
