@@ -1,4 +1,6 @@
-﻿namespace Game2048.Game
+﻿using Game2048.Properties;
+
+namespace Game2048.Game
 {
     class GameMain
     {
@@ -10,17 +12,7 @@
         private const int INITIAL_PANEL_NUM = 2;
 
         // ベストスコア
-        private int bestScore = 0;
-
-        public int BestScore
-        {
-            get {
-                if (this.Board.Score > this.bestScore) {
-                    this.bestScore = this.Board.Score;
-                }
-                return this.bestScore;
-            }
-        }
+        private int bestScore = Settings.Default.BestScore;
 
         public GameMain()
         {
@@ -28,16 +20,25 @@
             this.Board = new GameBoard(ROW_SIZE, COLUMN_SIZE);
         }
 
-        public GameMain(int bestScore) : this()
-        {
-            this.bestScore = bestScore;
-        }
-
         /// <summary>
         /// ボードの情報を取得
         /// </summary>
         /// <returns>ボードの情報</returns>
         public GameBoard Board { get; }
+
+        /// <summary>
+        /// ベストスコアを取得
+        /// </summary>
+        /// <returns>ベストスコア</returns>
+        public int BestScore
+        {
+            get {
+                if (this.Board.Score > this.bestScore) {
+                    this.bestScore = Settings.Default.BestScore = this.Board.Score;
+                }
+                return this.bestScore;
+            }
+        }
 
         /// <summary>
         /// ゲームをスタートする時の動作

@@ -30,229 +30,229 @@ namespace Game2048.Forms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.GameBoard = new System.Windows.Forms.GroupBox();
-            this.TileBase = new System.Windows.Forms.Panel();
-            this.TileDataBase = new System.Windows.Forms.Label();
-            this.StartButton = new System.Windows.Forms.Button();
-            this.MoveUpButton = new System.Windows.Forms.Button();
-            this.MoveLeftButton = new System.Windows.Forms.Button();
-            this.MoveRightButton = new System.Windows.Forms.Button();
-            this.MoveDownButton = new System.Windows.Forms.Button();
-            this.Logo2048 = new System.Windows.Forms.Label();
-            this.ScoreBox = new System.Windows.Forms.GroupBox();
-            this.ScoreLabel = new System.Windows.Forms.Label();
+            this.Gbx_GameBoard = new System.Windows.Forms.GroupBox();
+            this.Pnl_TileBase = new System.Windows.Forms.Panel();
+            this.Lbl_TileDataBase = new System.Windows.Forms.Label();
+            this.Btn_Start = new System.Windows.Forms.Button();
+            this.Btn_MoveUp = new System.Windows.Forms.Button();
+            this.Btn_MoveLeft = new System.Windows.Forms.Button();
+            this.Btn_MoveRight = new System.Windows.Forms.Button();
+            this.Btn_MoveDown = new System.Windows.Forms.Button();
+            this.Lbl_2048Logo = new System.Windows.Forms.Label();
+            this.Gbx_Score = new System.Windows.Forms.GroupBox();
+            this.Lbl_Score = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.MenuHelpEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuVersion = new System.Windows.Forms.ToolStripMenuItem();
-            this.BestScoreBox = new System.Windows.Forms.GroupBox();
-            this.BestScoreLabel = new System.Windows.Forms.Label();
-            this.ReturnButton = new System.Windows.Forms.Button();
-            this.GameBoard.SuspendLayout();
-            this.TileBase.SuspendLayout();
-            this.ScoreBox.SuspendLayout();
+            this.Tsmi_Help = new System.Windows.Forms.ToolStripMenuItem();
+            this.Tsmi_Version = new System.Windows.Forms.ToolStripMenuItem();
+            this.Gbx_BestScore = new System.Windows.Forms.GroupBox();
+            this.Lbl_BestScore = new System.Windows.Forms.Label();
+            this.Btn_Return = new System.Windows.Forms.Button();
+            this.Gbx_GameBoard.SuspendLayout();
+            this.Pnl_TileBase.SuspendLayout();
+            this.Gbx_Score.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.BestScoreBox.SuspendLayout();
+            this.Gbx_BestScore.SuspendLayout();
             this.SuspendLayout();
             // 
-            // GameBoard
+            // Gbx_GameBoard
             // 
-            this.GameBoard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(173)))), ((int)(((byte)(160)))));
-            this.GameBoard.Controls.Add(this.TileBase);
-            this.GameBoard.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.GameBoard.Location = new System.Drawing.Point(21, 104);
-            this.GameBoard.Name = "GameBoard";
-            this.GameBoard.Size = new System.Drawing.Size(429, 445);
-            this.GameBoard.TabIndex = 0;
-            this.GameBoard.TabStop = false;
+            this.Gbx_GameBoard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(173)))), ((int)(((byte)(160)))));
+            this.Gbx_GameBoard.Controls.Add(this.Pnl_TileBase);
+            this.Gbx_GameBoard.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Gbx_GameBoard.Location = new System.Drawing.Point(21, 104);
+            this.Gbx_GameBoard.Name = "Gbx_GameBoard";
+            this.Gbx_GameBoard.Size = new System.Drawing.Size(429, 445);
+            this.Gbx_GameBoard.TabIndex = 0;
+            this.Gbx_GameBoard.TabStop = false;
             // 
-            // TileBase
+            // Pnl_TileBase
             // 
-            this.TileBase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(228)))), ((int)(((byte)(218)))));
-            this.TileBase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TileBase.Controls.Add(this.TileDataBase);
-            this.TileBase.Location = new System.Drawing.Point(6, 20);
-            this.TileBase.Name = "TileBase";
-            this.TileBase.Size = new System.Drawing.Size(100, 100);
-            this.TileBase.TabIndex = 0;
-            this.TileBase.Visible = false;
+            this.Pnl_TileBase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(228)))), ((int)(((byte)(218)))));
+            this.Pnl_TileBase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Pnl_TileBase.Controls.Add(this.Lbl_TileDataBase);
+            this.Pnl_TileBase.Location = new System.Drawing.Point(6, 20);
+            this.Pnl_TileBase.Name = "Pnl_TileBase";
+            this.Pnl_TileBase.Size = new System.Drawing.Size(100, 100);
+            this.Pnl_TileBase.TabIndex = 0;
+            this.Pnl_TileBase.Visible = false;
             // 
-            // TileDataBase
+            // Lbl_TileDataBase
             // 
-            this.TileDataBase.Font = new System.Drawing.Font("Ubuntu Mono", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TileDataBase.Location = new System.Drawing.Point(3, 12);
-            this.TileDataBase.Name = "TileDataBase";
-            this.TileDataBase.Size = new System.Drawing.Size(92, 73);
-            this.TileDataBase.TabIndex = 1;
-            this.TileDataBase.Text = "2";
-            this.TileDataBase.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Lbl_TileDataBase.Font = new System.Drawing.Font("Ubuntu Mono", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_TileDataBase.Location = new System.Drawing.Point(3, 12);
+            this.Lbl_TileDataBase.Name = "Lbl_TileDataBase";
+            this.Lbl_TileDataBase.Size = new System.Drawing.Size(92, 73);
+            this.Lbl_TileDataBase.TabIndex = 1;
+            this.Lbl_TileDataBase.Text = "2";
+            this.Lbl_TileDataBase.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // StartButton
+            // Btn_Start
             // 
-            this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.StartButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(122)))), ((int)(((byte)(104)))));
-            this.StartButton.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.StartButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.StartButton.Location = new System.Drawing.Point(635, 483);
-            this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(105, 56);
-            this.StartButton.TabIndex = 1;
-            this.StartButton.Text = "Start";
-            this.StartButton.UseVisualStyleBackColor = false;
-            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            this.Btn_Start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_Start.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(122)))), ((int)(((byte)(104)))));
+            this.Btn_Start.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Btn_Start.ForeColor = System.Drawing.SystemColors.Info;
+            this.Btn_Start.Location = new System.Drawing.Point(635, 483);
+            this.Btn_Start.Name = "Btn_Start";
+            this.Btn_Start.Size = new System.Drawing.Size(105, 56);
+            this.Btn_Start.TabIndex = 1;
+            this.Btn_Start.Text = "Start";
+            this.Btn_Start.UseVisualStyleBackColor = false;
+            this.Btn_Start.Click += new System.EventHandler(this.Btn_Start_Click);
             // 
-            // MoveUpButton
+            // Btn_MoveUp
             // 
-            this.MoveUpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.MoveUpButton.BackColor = System.Drawing.Color.BurlyWood;
-            this.MoveUpButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.MoveUpButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MoveUpButton.Location = new System.Drawing.Point(578, 242);
-            this.MoveUpButton.Name = "MoveUpButton";
-            this.MoveUpButton.Size = new System.Drawing.Size(65, 59);
-            this.MoveUpButton.TabIndex = 2;
-            this.MoveUpButton.Text = "↑";
-            this.MoveUpButton.UseVisualStyleBackColor = false;
-            this.MoveUpButton.Click += new System.EventHandler(this.MoveUpButton_Click);
+            this.Btn_MoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_MoveUp.BackColor = System.Drawing.Color.BurlyWood;
+            this.Btn_MoveUp.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Btn_MoveUp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Btn_MoveUp.Location = new System.Drawing.Point(578, 242);
+            this.Btn_MoveUp.Name = "Btn_MoveUp";
+            this.Btn_MoveUp.Size = new System.Drawing.Size(65, 59);
+            this.Btn_MoveUp.TabIndex = 2;
+            this.Btn_MoveUp.Text = "↑";
+            this.Btn_MoveUp.UseVisualStyleBackColor = false;
+            this.Btn_MoveUp.Click += new System.EventHandler(this.Btn_MoveUp_Click);
             // 
-            // MoveLeftButton
+            // Btn_MoveLeft
             // 
-            this.MoveLeftButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.MoveLeftButton.BackColor = System.Drawing.Color.BurlyWood;
-            this.MoveLeftButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.MoveLeftButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MoveLeftButton.Location = new System.Drawing.Point(507, 296);
-            this.MoveLeftButton.Name = "MoveLeftButton";
-            this.MoveLeftButton.Size = new System.Drawing.Size(65, 59);
-            this.MoveLeftButton.TabIndex = 3;
-            this.MoveLeftButton.Text = "←";
-            this.MoveLeftButton.UseVisualStyleBackColor = false;
-            this.MoveLeftButton.Click += new System.EventHandler(this.MoveLeftButton_Click);
+            this.Btn_MoveLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_MoveLeft.BackColor = System.Drawing.Color.BurlyWood;
+            this.Btn_MoveLeft.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Btn_MoveLeft.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Btn_MoveLeft.Location = new System.Drawing.Point(507, 296);
+            this.Btn_MoveLeft.Name = "Btn_MoveLeft";
+            this.Btn_MoveLeft.Size = new System.Drawing.Size(65, 59);
+            this.Btn_MoveLeft.TabIndex = 3;
+            this.Btn_MoveLeft.Text = "←";
+            this.Btn_MoveLeft.UseVisualStyleBackColor = false;
+            this.Btn_MoveLeft.Click += new System.EventHandler(this.Btn_MoveLeft_Click);
             // 
-            // MoveRightButton
+            // Btn_MoveRight
             // 
-            this.MoveRightButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.MoveRightButton.BackColor = System.Drawing.Color.BurlyWood;
-            this.MoveRightButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.MoveRightButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MoveRightButton.Location = new System.Drawing.Point(649, 296);
-            this.MoveRightButton.Name = "MoveRightButton";
-            this.MoveRightButton.Size = new System.Drawing.Size(65, 59);
-            this.MoveRightButton.TabIndex = 4;
-            this.MoveRightButton.Text = "→";
-            this.MoveRightButton.UseVisualStyleBackColor = false;
-            this.MoveRightButton.Click += new System.EventHandler(this.MoveRightButton_Click);
+            this.Btn_MoveRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_MoveRight.BackColor = System.Drawing.Color.BurlyWood;
+            this.Btn_MoveRight.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Btn_MoveRight.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Btn_MoveRight.Location = new System.Drawing.Point(649, 296);
+            this.Btn_MoveRight.Name = "Btn_MoveRight";
+            this.Btn_MoveRight.Size = new System.Drawing.Size(65, 59);
+            this.Btn_MoveRight.TabIndex = 4;
+            this.Btn_MoveRight.Text = "→";
+            this.Btn_MoveRight.UseVisualStyleBackColor = false;
+            this.Btn_MoveRight.Click += new System.EventHandler(this.Btn_MoveRight_Click);
             // 
-            // MoveDownButton
+            // Btn_MoveDown
             // 
-            this.MoveDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.MoveDownButton.BackColor = System.Drawing.Color.BurlyWood;
-            this.MoveDownButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.MoveDownButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MoveDownButton.Location = new System.Drawing.Point(578, 351);
-            this.MoveDownButton.Name = "MoveDownButton";
-            this.MoveDownButton.Size = new System.Drawing.Size(65, 59);
-            this.MoveDownButton.TabIndex = 5;
-            this.MoveDownButton.Text = "↓";
-            this.MoveDownButton.UseVisualStyleBackColor = false;
-            this.MoveDownButton.Click += new System.EventHandler(this.MoveDownButton_Click);
+            this.Btn_MoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_MoveDown.BackColor = System.Drawing.Color.BurlyWood;
+            this.Btn_MoveDown.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Btn_MoveDown.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Btn_MoveDown.Location = new System.Drawing.Point(578, 351);
+            this.Btn_MoveDown.Name = "Btn_MoveDown";
+            this.Btn_MoveDown.Size = new System.Drawing.Size(65, 59);
+            this.Btn_MoveDown.TabIndex = 5;
+            this.Btn_MoveDown.Text = "↓";
+            this.Btn_MoveDown.UseVisualStyleBackColor = false;
+            this.Btn_MoveDown.Click += new System.EventHandler(this.Btn_MoveDown_Click);
             // 
-            // Logo2048
+            // Lbl_2048Logo
             // 
-            this.Logo2048.Font = new System.Drawing.Font("MS UI Gothic", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.Logo2048.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
-            this.Logo2048.Location = new System.Drawing.Point(12, 37);
-            this.Logo2048.Name = "Logo2048";
-            this.Logo2048.Size = new System.Drawing.Size(153, 64);
-            this.Logo2048.TabIndex = 7;
-            this.Logo2048.Text = "2048";
-            this.Logo2048.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Lbl_2048Logo.Font = new System.Drawing.Font("MS UI Gothic", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Lbl_2048Logo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
+            this.Lbl_2048Logo.Location = new System.Drawing.Point(12, 37);
+            this.Lbl_2048Logo.Name = "Lbl_2048Logo";
+            this.Lbl_2048Logo.Size = new System.Drawing.Size(153, 64);
+            this.Lbl_2048Logo.TabIndex = 7;
+            this.Lbl_2048Logo.Text = "2048";
+            this.Lbl_2048Logo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ScoreBox
+            // Gbx_Score
             // 
-            this.ScoreBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ScoreBox.Controls.Add(this.ScoreLabel);
-            this.ScoreBox.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ScoreBox.Location = new System.Drawing.Point(475, 55);
-            this.ScoreBox.Name = "ScoreBox";
-            this.ScoreBox.Size = new System.Drawing.Size(143, 79);
-            this.ScoreBox.TabIndex = 8;
-            this.ScoreBox.TabStop = false;
-            this.ScoreBox.Text = "SCORE";
+            this.Gbx_Score.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Gbx_Score.Controls.Add(this.Lbl_Score);
+            this.Gbx_Score.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Gbx_Score.Location = new System.Drawing.Point(475, 55);
+            this.Gbx_Score.Name = "Gbx_Score";
+            this.Gbx_Score.Size = new System.Drawing.Size(143, 79);
+            this.Gbx_Score.TabIndex = 8;
+            this.Gbx_Score.TabStop = false;
+            this.Gbx_Score.Text = "SCORE";
             // 
-            // ScoreLabel
+            // Lbl_Score
             // 
-            this.ScoreLabel.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ScoreLabel.Location = new System.Drawing.Point(6, 33);
-            this.ScoreLabel.Name = "ScoreLabel";
-            this.ScoreLabel.Size = new System.Drawing.Size(131, 36);
-            this.ScoreLabel.TabIndex = 9;
-            this.ScoreLabel.Text = "0";
-            this.ScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Lbl_Score.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Lbl_Score.Location = new System.Drawing.Point(6, 33);
+            this.Lbl_Score.Name = "Lbl_Score";
+            this.Lbl_Score.Size = new System.Drawing.Size(131, 36);
+            this.Lbl_Score.TabIndex = 9;
+            this.Lbl_Score.Text = "0";
+            this.Lbl_Score.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuHelpEdit});
+            this.Tsmi_Help});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(787, 24);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // MenuHelpEdit
+            // Tsmi_Help
             // 
-            this.MenuHelpEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuVersion});
-            this.MenuHelpEdit.Name = "MenuHelpEdit";
-            this.MenuHelpEdit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.H)));
-            this.MenuHelpEdit.ShowShortcutKeys = false;
-            this.MenuHelpEdit.Size = new System.Drawing.Size(65, 20);
-            this.MenuHelpEdit.Text = "ヘルプ(&H)";
+            this.Tsmi_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Tsmi_Version});
+            this.Tsmi_Help.Name = "Tsmi_Help";
+            this.Tsmi_Help.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.H)));
+            this.Tsmi_Help.ShowShortcutKeys = false;
+            this.Tsmi_Help.Size = new System.Drawing.Size(65, 20);
+            this.Tsmi_Help.Text = "ヘルプ(&H)";
             // 
-            // MenuVersion
+            // Tsmi_Version
             // 
-            this.MenuVersion.Name = "MenuVersion";
-            this.MenuVersion.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.MenuVersion.ShowShortcutKeys = false;
-            this.MenuVersion.Size = new System.Drawing.Size(160, 22);
-            this.MenuVersion.Text = "バージョン情報(&A)...";
-            this.MenuVersion.Click += new System.EventHandler(this.MenuVersion_Click);
+            this.Tsmi_Version.Name = "Tsmi_Version";
+            this.Tsmi_Version.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.Tsmi_Version.ShowShortcutKeys = false;
+            this.Tsmi_Version.Size = new System.Drawing.Size(160, 22);
+            this.Tsmi_Version.Text = "バージョン情報(&A)...";
+            this.Tsmi_Version.Click += new System.EventHandler(this.Tsmi_Version_Click);
             // 
-            // BestScoreBox
+            // Gbx_BestScore
             // 
-            this.BestScoreBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BestScoreBox.Controls.Add(this.BestScoreLabel);
-            this.BestScoreBox.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BestScoreBox.Location = new System.Drawing.Point(624, 55);
-            this.BestScoreBox.Name = "BestScoreBox";
-            this.BestScoreBox.Size = new System.Drawing.Size(143, 79);
-            this.BestScoreBox.TabIndex = 10;
-            this.BestScoreBox.TabStop = false;
-            this.BestScoreBox.Text = "BEST";
+            this.Gbx_BestScore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Gbx_BestScore.Controls.Add(this.Lbl_BestScore);
+            this.Gbx_BestScore.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Gbx_BestScore.Location = new System.Drawing.Point(624, 55);
+            this.Gbx_BestScore.Name = "Gbx_BestScore";
+            this.Gbx_BestScore.Size = new System.Drawing.Size(143, 79);
+            this.Gbx_BestScore.TabIndex = 10;
+            this.Gbx_BestScore.TabStop = false;
+            this.Gbx_BestScore.Text = "BEST";
             // 
-            // BestScoreLabel
+            // Lbl_BestScore
             // 
-            this.BestScoreLabel.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.BestScoreLabel.Location = new System.Drawing.Point(6, 33);
-            this.BestScoreLabel.Name = "BestScoreLabel";
-            this.BestScoreLabel.Size = new System.Drawing.Size(131, 36);
-            this.BestScoreLabel.TabIndex = 9;
-            this.BestScoreLabel.Text = "0";
-            this.BestScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Lbl_BestScore.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Lbl_BestScore.Location = new System.Drawing.Point(6, 33);
+            this.Lbl_BestScore.Name = "Lbl_BestScore";
+            this.Lbl_BestScore.Size = new System.Drawing.Size(131, 36);
+            this.Lbl_BestScore.TabIndex = 9;
+            this.Lbl_BestScore.Text = "0";
+            this.Lbl_BestScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ReturnButton
+            // Btn_Return
             // 
-            this.ReturnButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ReturnButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(122)))), ((int)(((byte)(104)))));
-            this.ReturnButton.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ReturnButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.ReturnButton.Location = new System.Drawing.Point(532, 483);
-            this.ReturnButton.Name = "ReturnButton";
-            this.ReturnButton.Size = new System.Drawing.Size(62, 56);
-            this.ReturnButton.TabIndex = 11;
-            this.ReturnButton.Text = "↻";
-            this.ReturnButton.UseVisualStyleBackColor = false;
-            this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
+            this.Btn_Return.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Btn_Return.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(122)))), ((int)(((byte)(104)))));
+            this.Btn_Return.Font = new System.Drawing.Font("MS UI Gothic", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Btn_Return.ForeColor = System.Drawing.SystemColors.Info;
+            this.Btn_Return.Location = new System.Drawing.Point(532, 483);
+            this.Btn_Return.Name = "Btn_Return";
+            this.Btn_Return.Size = new System.Drawing.Size(62, 56);
+            this.Btn_Return.TabIndex = 11;
+            this.Btn_Return.Text = "↻";
+            this.Btn_Return.UseVisualStyleBackColor = false;
+            this.Btn_Return.Click += new System.EventHandler(this.Btn_Return_Click);
             // 
             // FormMain
             // 
@@ -260,16 +260,16 @@ namespace Game2048.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(787, 563);
-            this.Controls.Add(this.ReturnButton);
-            this.Controls.Add(this.BestScoreBox);
-            this.Controls.Add(this.ScoreBox);
-            this.Controls.Add(this.Logo2048);
-            this.Controls.Add(this.MoveDownButton);
-            this.Controls.Add(this.MoveRightButton);
-            this.Controls.Add(this.MoveLeftButton);
-            this.Controls.Add(this.MoveUpButton);
-            this.Controls.Add(this.StartButton);
-            this.Controls.Add(this.GameBoard);
+            this.Controls.Add(this.Btn_Return);
+            this.Controls.Add(this.Gbx_BestScore);
+            this.Controls.Add(this.Gbx_Score);
+            this.Controls.Add(this.Lbl_2048Logo);
+            this.Controls.Add(this.Btn_MoveDown);
+            this.Controls.Add(this.Btn_MoveRight);
+            this.Controls.Add(this.Btn_MoveLeft);
+            this.Controls.Add(this.Btn_MoveUp);
+            this.Controls.Add(this.Btn_Start);
+            this.Controls.Add(this.Gbx_GameBoard);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -278,13 +278,13 @@ namespace Game2048.Forms
             this.MinimumSize = new System.Drawing.Size(803, 602);
             this.Name = "FormMain";
             this.Text = "2048 Game";
-            this.Load += new System.EventHandler(this.GameForm_Load);
-            this.GameBoard.ResumeLayout(false);
-            this.TileBase.ResumeLayout(false);
-            this.ScoreBox.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.FormMain_Load);
+            this.Gbx_GameBoard.ResumeLayout(false);
+            this.Pnl_TileBase.ResumeLayout(false);
+            this.Gbx_Score.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.BestScoreBox.ResumeLayout(false);
+            this.Gbx_BestScore.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,23 +292,23 @@ namespace Game2048.Forms
 
         #endregion
 
-        private System.Windows.Forms.GroupBox GameBoard;
-        private System.Windows.Forms.Button StartButton;
-        private System.Windows.Forms.Button MoveUpButton;
-        private System.Windows.Forms.Button MoveLeftButton;
-        private System.Windows.Forms.Button MoveRightButton;
-        private System.Windows.Forms.Button MoveDownButton;
-        private System.Windows.Forms.Panel TileBase;
-        private System.Windows.Forms.Label TileDataBase;
-        private System.Windows.Forms.Label Logo2048;
-        private System.Windows.Forms.GroupBox ScoreBox;
-        private System.Windows.Forms.Label ScoreLabel;
+        private System.Windows.Forms.GroupBox Gbx_GameBoard;
+        private System.Windows.Forms.Button Btn_Start;
+        private System.Windows.Forms.Button Btn_MoveUp;
+        private System.Windows.Forms.Button Btn_MoveLeft;
+        private System.Windows.Forms.Button Btn_MoveRight;
+        private System.Windows.Forms.Button Btn_MoveDown;
+        private System.Windows.Forms.Panel Pnl_TileBase;
+        private System.Windows.Forms.Label Lbl_TileDataBase;
+        private System.Windows.Forms.Label Lbl_2048Logo;
+        private System.Windows.Forms.GroupBox Gbx_Score;
+        private System.Windows.Forms.Label Lbl_Score;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem MenuHelpEdit;
-        private System.Windows.Forms.ToolStripMenuItem MenuVersion;
-        private System.Windows.Forms.GroupBox BestScoreBox;
-        private System.Windows.Forms.Label BestScoreLabel;
-        private System.Windows.Forms.Button ReturnButton;
+        private System.Windows.Forms.ToolStripMenuItem Tsmi_Help;
+        private System.Windows.Forms.ToolStripMenuItem Tsmi_Version;
+        private System.Windows.Forms.GroupBox Gbx_BestScore;
+        private System.Windows.Forms.Label Lbl_BestScore;
+        private System.Windows.Forms.Button Btn_Return;
     }
 }
 

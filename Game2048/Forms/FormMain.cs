@@ -9,155 +9,156 @@ namespace Game2048.Forms
 {
     public partial class FormMain : Form
     {
-        // ツール情報
-        const string GAME_NAME = "2048 Game";
-        const string VERSION = "v1.1";
-        const string AUTHOR = "アーム";
-        const string TWITTER_ID = "@40414";
-
         private GameMain game = null;
-        private Panel[] tile = null;
-        private Label[] tileLabel = null;
-
-        // ベストスコア
-        private int bestScore = 0;
 
         public FormMain()
         {
             InitializeComponent();
+
+            //ApplicationExitイベントハンドラを追加
+            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
         }
 
         /// <summary>
         /// フォーム起動時の処理
         /// </summary>
-        private void GameForm_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
             // 移動ボタン無効化
-            MoveUpButton.Enabled = MoveLeftButton.Enabled =
-                MoveRightButton.Enabled = MoveDownButton.Enabled = false;
+            Btn_MoveUp.Enabled = Btn_MoveLeft.Enabled =
+                Btn_MoveRight.Enabled = Btn_MoveDown.Enabled = false;
 
             // 戻るボタン無効化
-            ReturnButton.Enabled = false;
+            Btn_Return.Enabled = false;
+
+            // ベストスコアの読み込み
+            this.Lbl_BestScore.Text = Convert.ToString(Settings.Default.BestScore);
+        }
+
+        /// <summary>
+        /// ApplicationExitイベントハンドラ
+        /// </summary>
+        private void Application_ApplicationExit(object sender, EventArgs e)
+        {
+            // ベストスコアの保存
+            Settings.Default.BestScore = this.game.BestScore;
+            Settings.Default.Save();
+
+            //ApplicationExitイベントハンドラを削除
+            Application.ApplicationExit -= new EventHandler(Application_ApplicationExit);
         }
 
         /// <summary>
         /// バージョン情報
         /// </summary>
-        private void MenuVersion_Click(object sender, EventArgs e)
+        private void Tsmi_Version_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                $"{GAME_NAME} {VERSION}\n\n© 2023 {AUTHOR}<Twitter:{TWITTER_ID}>",
-                Resources.VersionInfo,
-                MessageBoxButtons.OK);
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            var assemblyName = assembly.GetName();
+            var fileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+            var title = fileVersionInfo.FileDescription;
+
+            string message = $"{title} v{assemblyName.Version.ToString(3)}\n{fileVersionInfo.LegalCopyright}";
+            MessageBox.Show(message, Resources.VersionInfo);
         }
 
         /// <summary>
-        /// 対数(log10)を取って数値の桁数を調べる
+        /// スタートボタンを押したときの処理
         /// </summary>
-        public int Digit(int value)
+        private void Btn_Start_Click(object sender, EventArgs e)
         {
-            // NegativeInfinityを回避
-            return (value == 0) ? 1 : ((int)Math.Log10(value) + 1);
-        }
-
-        public void NoGameInstanceErrorMsg()
-        {
-            MessageBox.Show(
-                Resources.Message_GameInstance,
-                Resources.Error,
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-        }
-
-        /// <summary>
-        /// Gameクラスのインスタンスに対応してタイルを生成
-        /// </summary>
-        private void NewTileObjetToForm()
-        {
-            // Gameクラスのインスタンスが生成されていない場合
-            if (this.game == null) {
-                NoGameInstanceErrorMsg();
-                return;
-            }
-
-            // 生成するタイルの数(ボードの大きさ)
-            int boardSize = this.game.Board.BoardSize;
-
-            this.tile = new Panel[boardSize];
-            this.tileLabel = new Label[boardSize];
-
-            for (int index = 0; index < boardSize; index++)
+            // 誤作動防止のメッセージボックスを表示
+            if (this.game != null)
             {
-                // パネルの設定
-                this.tile[index] = new Panel();
-                this.tile[index].BackColor = Color.FromArgb(238, 228, 218);
-                this.tile[index].BorderStyle = BorderStyle.FixedSingle;
-                this.tile[index].Size = new Size(100, 100);
+                if (!this.game.IsGameOver)
+                {
+                    DialogResult result = MessageBox.Show(
+                        Resources.Message_StartOver, Resources.Attention,
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button2);
+                    if (result == DialogResult.No) return;
+                }
+            }
 
-                // 値を格納するラベルの設定
-                this.tileLabel[index] = new Label();
-                this.tileLabel[index].AutoSize = false;
-                this.tileLabel[index].Font = new Font("Ubuntu Mono", 40);
-                this.tileLabel[index].TextAlign = ContentAlignment.MiddleCenter;
-                this.tileLabel[index].Size = new Size(92, 73);
-                this.tileLabel[index].Location = new Point(3, 12);
+            // ボード上のタイルを全てクリア
+            this.Gbx_GameBoard.Controls.Clear();
+
+            // Gameクラスのインスタンス生成
+            this.game = new GameMain();
+
+            // ゲームを開始する
+            this.game.Start();
+
+            // 移動ボタン有効化
+            Btn_MoveUp.Enabled = Btn_MoveLeft.Enabled =
+            Btn_MoveRight.Enabled = Btn_MoveDown.Enabled = true;
+
+            // 戻るボタン無効化
+            Btn_Return.Enabled = false;
+
+            // タイルの配置
+            this.UpdateTileToForm();
+        }
+
+        /// <summary>
+        /// タイルを上方向に移動する
+        /// </summary>
+        private void Btn_MoveUp_Click(object sender, EventArgs e)
+        {
+            if (this.game.Board.MoveTilesUp())
+            {
+                this.UpdateTileToForm();
+                CheckResult();
             }
         }
 
         /// <summary>
-        /// 格納されている値に対応して、タイルをデザインする
+        /// タイルを左方向に移動する
         /// </summary>
-        /// <param name="index">デザイン調整したいタイルのインデックス</param>
-        private void TileDesign(int index)
+        private void Btn_MoveLeft_Click(object sender, EventArgs e)
         {
-            int data = this.game.Board.Tiles[index].Data;
-            this.tile[index].ForeColor = Color.Black;
-
-            switch (data)
+            if (this.game.Board.MoveTilesLeft())
             {
-                // タイルの色付け
-                case 2:
-                    this.tile[index].BackColor = Color.FromArgb(238, 228, 218);
-                    break;
-                case 4:
-                    this.tile[index].BackColor = Color.FromArgb(237, 224, 192);
-                    break;
-                case 8:
-                    this.tile[index].BackColor = Color.FromArgb(242, 177, 121);
-                    break;
-                case 16:
-                    this.tile[index].BackColor = Color.FromArgb(245, 149, 99);
-                    break;
-                case 32:
-                    this.tile[index].BackColor = Color.FromArgb(246, 124, 95);
-                    break;
-                case 64:
-                    this.tile[index].BackColor = Color.FromArgb(246, 94, 59);
-                    break;
-                case 128:
-                    this.tile[index].BackColor = Color.FromArgb(237, 207, 114);
-                    break;
-                case 256:
-                    this.tile[index].BackColor = Color.FromArgb(237, 204, 97);
-                    break;
-                case 512:
-                    this.tile[index].BackColor = Color.FromArgb(243, 215, 116);
-                    break;
-                case 1024:
-                    this.tile[index].BackColor = Color.FromArgb(183, 148, 115);
-                    break;
-                case 2048:
-                    this.tile[index].BackColor = Color.FromArgb(151, 111, 67);
-                    break;
-                default:
-                    this.tile[index].BackColor = Color.FromArgb(0, 0, 0);
-                    this.tile[index].ForeColor = Color.White;
-                    break;
+                this.UpdateTileToForm();
+                CheckResult();
             }
+        }
 
-            // フォントサイズの調整
-            int fontSize = Digit(data) < 6 ? 40 - 7 * (Digit(data) - 2) : 17;
-            this.tileLabel[index].Font = new Font("Ubuntu Mono", fontSize);
+        /// <summary>
+        /// タイルを右方向に移動する
+        /// </summary>
+        private void Btn_MoveRight_Click(object sender, EventArgs e)
+        {
+            if (this.game.Board.MoveTilesRight())
+            {
+                this.UpdateTileToForm();
+                CheckResult();
+            }
+        }
+
+        /// <summary>
+        /// タイルを下方向に移動する
+        /// </summary>
+        private void Btn_MoveDown_Click(object sender, EventArgs e)
+        {
+            if (this.game.Board.MoveTilesDown())
+            {
+                this.UpdateTileToForm();
+                CheckResult();
+            }
+        }
+
+        /// <summary>
+        /// 戻るボタンを押したときの処理
+        /// </summary>
+        private void Btn_Return_Click(object sender, EventArgs e)
+        {
+            this.game.Board.RestoreTiles();
+            this.UpdateTileToForm();
+
+            // 戻るボタン無効化
+            Btn_Return.Enabled = false;
         }
 
         /// <summary>
@@ -166,47 +167,48 @@ namespace Game2048.Forms
         private void UpdateTileToForm()
         {
             // Gameクラスのインスタンスが生成されていない場合
-            if (this.game == null) {
-                NoGameInstanceErrorMsg();
+            if (this.game is null)
+            {
+                MessageBox.Show(Resources.Message_GameInstance, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            for (int index = 0; index < this.game.Board.BoardSize; index++)
+            foreach (var tile in this.game.Board.Tiles)
             {
-                this.game.Board.Tiles[index].EditLock = false;
+                tile.EditLock = false;
 
-                if (!this.game.Board.Tiles[index].IsExist) {
-                    this.tile[index].Visible = false;
+                if (!tile.IsExist)
+                {
+                    tile.TilePanel.Visible = false;
                     continue;
                 }
 
-                int posX = this.game.Board.Tiles[index].Column;
-                int posY = this.game.Board.Tiles[index].Row;
+                int posX = tile.Column;
+                int posY = tile.Row;
 
                 // パネルの配置位置設定
-                this.tile[index].Visible = false;
-                this.tile[index].Name = $"Tile{Convert.ToString($"{posX}_{posY}")}";
-                this.tile[index].Location = new Point(
+                tile.TilePanel.Visible = false;
+                tile.TilePanel.Name = $"Tile{Convert.ToString($"{posX}_{posY}")}";
+                tile.TilePanel.Location = new Point(
                     (posX + 1) * 6 + posX * 100,
                     (posY + 1) * 20 + posY * 86);
 
                 // 値を格納するラベルの設定
-                this.tileLabel[index].Name = $"TileData{Convert.ToString($"{posX}_{posY}")}";
-                this.tileLabel[index].Text = Convert.ToString(game.Board.Tiles[index].Data);
+                tile.TileLabel.Name = $"TileData{Convert.ToString($"{posX}_{posY}")}";
+                tile.TileLabel.Text = Convert.ToString(tile.Data);
 
                 // タイルデザインの調整
-                this.TileDesign(index);
+                tile.ToDesign();
 
                 // タイルの配置
-                this.GameBoard.Controls.Add(this.tile[index]);
-                this.tile[index].Controls.Add(this.tileLabel[index]);
-                this.tile[index].Visible = true;
+                this.Gbx_GameBoard.Controls.Add(tile.TilePanel);
+                tile.TilePanel.Controls.Add(tile.TileLabel);
+                tile.TilePanel.Visible = true;
             }
 
             // スコア表の更新
-            this.ScoreLabel.Text = Convert.ToString(this.game.Board.Score);
-            this.BestScoreLabel.Text = Convert.ToString(this.game.BestScore);
-            this.bestScore = this.game.BestScore;
+            this.Lbl_Score.Text = Convert.ToString(this.game.Board.Score);
+            this.Lbl_BestScore.Text = Convert.ToString(this.game.BestScore);
         }
 
         /// <summary>
@@ -215,19 +217,21 @@ namespace Game2048.Forms
         private void CheckResult()
         {
             // ゲームオーバーになったか調べる
-            if (this.game.IsGameOver) {
-                ReturnButton.Enabled = false;
+            if (this.game.IsGameOver)
+            {
+                Btn_Return.Enabled = false;
                 GotGameOver();
                 return;
             }
 
             // ゲームクリアになったか調べる
-            if (this.game.IsGameClear) {
+            if (this.game.IsGameClear)
+            {
                 GotGameClear();
             }
 
             // 戻るボタン有効化
-            ReturnButton.Enabled = true;
+            Btn_Return.Enabled = true;
         }
 
         /// <summary>
@@ -236,8 +240,8 @@ namespace Game2048.Forms
         private void GotGameOver()
         {
             // 移動ボタンの無効化
-            MoveUpButton.Enabled = MoveLeftButton.Enabled =
-            MoveRightButton.Enabled = MoveDownButton.Enabled = false;
+            Btn_MoveUp.Enabled = Btn_MoveLeft.Enabled =
+            Btn_MoveRight.Enabled = Btn_MoveDown.Enabled = false;
             
             MessageBox.Show(Resources.Message_GameOver, Resources.TooBad, MessageBoxButtons.OK);
         }
@@ -251,101 +255,6 @@ namespace Game2048.Forms
                 MessageBox.Show(Resources.Message_Completed, Resources.Congratulations, MessageBoxButtons.OK);
                 this.game.CheckedGameClear = true;
             }
-        }
-
-        /// <summary>
-        /// スタートボタンを押したときの処理
-        /// </summary>
-        private void StartButton_Click(object sender, EventArgs e)
-        {
-            // 誤作動防止のメッセージボックスを表示
-            if (this.game != null) {
-                if (!this.game.IsGameOver) {
-                    DialogResult result = MessageBox.Show(
-                        Resources.Message_StartOver, Resources.Attention,
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Exclamation,
-                        MessageBoxDefaultButton.Button2);
-                    if (result == DialogResult.No) return;
-                }
-            }
-
-            // Gameクラスのインスタンス生成
-            this.game = new GameMain(this.bestScore);
-
-            // ゲームを開始する
-            this.game.Start();
-
-            // 移動ボタン有効化
-            MoveUpButton.Enabled = MoveLeftButton.Enabled =
-            MoveRightButton.Enabled = MoveDownButton.Enabled = true;
-
-            // 戻るボタン無効化
-            ReturnButton.Enabled = false;
-
-            // タイルを生成する
-            if (this.tile == null) {
-                this.NewTileObjetToForm();
-            }
-
-            // タイルの配置
-            this.UpdateTileToForm();
-        }
-
-        /// <summary>
-        /// タイルを上方向に移動する
-        /// </summary>
-        private void MoveUpButton_Click(object sender, EventArgs e)
-        {
-            if (this.game.Board.MoveTilesUp()) {
-                this.UpdateTileToForm();
-                CheckResult();
-            }
-        }
-
-        /// <summary>
-        /// タイルを左方向に移動する
-        /// </summary>
-        private void MoveLeftButton_Click(object sender, EventArgs e)
-        {
-            if (this.game.Board.MoveTilesLeft()) {
-                this.UpdateTileToForm();
-                CheckResult();
-            }
-        }
-
-        /// <summary>
-        /// タイルを右方向に移動する
-        /// </summary>
-        private void MoveRightButton_Click(object sender, EventArgs e)
-        {
-            if (this.game.Board.MoveTilesRight()) {
-                this.UpdateTileToForm();
-                CheckResult();
-            }
-        }
-
-        /// <summary>
-        /// タイルを下方向に移動する
-        /// </summary>
-        private void MoveDownButton_Click(object sender, EventArgs e)
-        {
-            if (this.game.Board.MoveTilesDown()) {
-                this.UpdateTileToForm();
-                CheckResult();
-            }
-        }
-
-        /// <summary>
-        /// 戻るボタンを押したときの処理
-        /// </summary>
-        private void ReturnButton_Click(object sender, EventArgs e)
-        {
-            this.game.Board.RestoreTiles();
-            this.UpdateTileToForm();
-
-            // 戻るボタン無効化
-            ReturnButton.Enabled = false;
         }
     }
 }
