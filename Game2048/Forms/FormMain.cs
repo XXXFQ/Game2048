@@ -175,26 +175,20 @@ namespace Game2048.Forms
 
             foreach (var tile in this.game.Board.Tiles)
             {
-                tile.EditLock = false;
+                int xIndex = tile.Column;
+                int yIndex = tile.Row;
+                int locationX = (xIndex + 1) * 6 + xIndex * 100;
+                int locationY = (yIndex + 1) * 20 + yIndex * 86;
+                tile.EditLock = tile.TilePanel.Visible = false;
 
-                if (!tile.IsExist)
-                {
-                    tile.TilePanel.Visible = false;
-                    continue;
-                }
-
-                int posX = tile.Column;
-                int posY = tile.Row;
+                if (!tile.IsExist) continue;
 
                 // パネルの配置位置設定
-                tile.TilePanel.Visible = false;
-                tile.TilePanel.Name = $"Tile{Convert.ToString($"{posX}_{posY}")}";
-                tile.TilePanel.Location = new Point(
-                    (posX + 1) * 6 + posX * 100,
-                    (posY + 1) * 20 + posY * 86);
+                tile.TilePanel.Name = $"Tile{Convert.ToString($"{xIndex}_{yIndex}")}";
+                tile.TilePanel.Location = new Point(locationX, locationY);
 
                 // 値を格納するラベルの設定
-                tile.TileLabel.Name = $"TileData{Convert.ToString($"{posX}_{posY}")}";
+                tile.TileLabel.Name = $"TileData{Convert.ToString($"{xIndex}_{yIndex}")}";
                 tile.TileLabel.Text = Convert.ToString(tile.Data);
 
                 // タイルデザインの調整
@@ -251,7 +245,8 @@ namespace Game2048.Forms
         /// </summary>
         private void GotGameClear()
         {
-            if (!this.game.CheckedGameClear) {
+            if (!this.game.CheckedGameClear)
+            {
                 MessageBox.Show(Resources.Message_Completed, Resources.Congratulations, MessageBoxButtons.OK);
                 this.game.CheckedGameClear = true;
             }
